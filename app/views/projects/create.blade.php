@@ -6,7 +6,7 @@
 
 @section('contenido')
 
-<h1>Create a Nerd</h1>
+<h1>Create a Project</h1>
 
 {{ HTML::ul($errors->all()) }}
 

@@ -10,8 +10,7 @@ class ProjectsController extends \BaseController {
 	public function index()
 	{
 		$projects = Projects::all();
-
-		return View::make('index')
+		return View::make('projects.index')
 			->with('projects', $projects);
 	}
 
@@ -22,7 +21,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('create');
+		return View::make('projects.create');
 	}
 
 	/**
@@ -70,7 +69,7 @@ class ProjectsController extends \BaseController {
 	{
 		$projects = Projects::find($id);
 
-		return View::make('show')
+		return View::make('projects.show')
 			->with('projects', $projects);
 	}
 
@@ -84,7 +83,7 @@ class ProjectsController extends \BaseController {
 	{
 		$projects = Projects::find($id);
 
-		return View::make('edit')
+		return View::make('projects.edit')
 			->with('projects', $projects);
 	}
 
@@ -142,7 +141,18 @@ class ProjectsController extends \BaseController {
 	}
 	public function search()
 	{
-		//
+
+		if ($_POST['project_code']!=null || $_POST['description']!=null || $_POST['hold_id']!=null) {
+			$projects = Projects::whereRaw("project_code like '%".$_POST['project_code']."%'")->get();
+			return View::make('projects.index')
+			->with('projects', $projects);
+		}
+		else{
+
+			$projects = Projects::all();
+			return View::make('projects.index')
+			->with('projects', $projects);
+		}
 	}
 
 }

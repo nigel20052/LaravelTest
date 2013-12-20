@@ -14,4 +14,8 @@
 #seccion Projects
 
 Route::resource('projects','ProjectsController');
+Route::post('projects/search', 'ProjectsController@search');
+#seccion Activities
+
+Route::resource('activities','ActivitiesController');
 
