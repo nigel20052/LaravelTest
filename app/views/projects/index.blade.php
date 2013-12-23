@@ -53,10 +53,7 @@
 			<td>{{ $value->planned_end }}</td>
 			<td>{{/*$activities = Activities::whereRaw('project_id ='.$value->id.' AND trace_tool =1')->count();*/
 				$value->activities()->count() }}</td>
-
-			
 			<td>
-
 				{{ Form::open(array('url' => 'projects/' . $value->id, 'class' => 'pull-right')) }}
 					{{ Form::hidden('_method', 'DELETE') }}
 					{{ Form::submit('Delete this Project', array('class' => 'btn btn-warning btn-sm')) }}

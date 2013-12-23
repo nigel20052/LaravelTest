@@ -8,9 +8,10 @@
 	</title>
 	{{ HTML::style('../src/css/bootstrap.min.css') }}
     {{ HTML::style('../src/css/bootstrap-theme.min.css') }}
-	<script type="text/javascript" src="../src/js/jquery.min.js"></script>
-	<script type="text/javascript" src="../src/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../src/js/scripts.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	@yield('head')
 </head>
 <body>

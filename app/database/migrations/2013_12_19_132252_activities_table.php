@@ -17,6 +17,7 @@ class ActivitiesTable extends Migration {
     	    $table->integer('project_id');
     	    $table->text('description');
     	    $table->boolean('trace_tool');
+    	    $table->timestamps();
     	});
 	}
 

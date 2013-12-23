@@ -76,4 +76,13 @@ class ActivitiesController extends \BaseController {
 		//
 	}
 
+	public function actividad()
+	{
+		$num=1;
+		Session::put('numero', $num);
+		Session::put('description', Input::get('description'));
+		Session::put('trace_tool', Input::get('trace_tool'));
+ 		return View::make('projects.create');
+	}
+
 }

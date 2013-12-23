@@ -1,6 +1,6 @@
 <?php
 use LaravelBook\Ardent\Ardent;
-class Activities extends Ardent
+class Activitie extends Ardent
 {
 	protected $table = 'activities';
 

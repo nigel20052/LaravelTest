@@ -9,7 +9,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$projects = Projects::all();
+		$projects = Project::all();
 		return View::make('projects.index')
 			->with('projects', $projects);
 	}
@@ -46,7 +46,7 @@ class ProjectsController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 
-			$projects = new Projects;
+			$projects = new Project;
 			$projects->project_code      = Input::get('project_code');
 			$projects->description     = Input::get('description');
 			$projects->hold_id = Input::get('hold_id');
@@ -67,7 +67,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$projects = Projects::find($id);
+		$projects = Project::find($id);
 
 		return View::make('projects.show')
 			->with('projects', $projects);
@@ -81,7 +81,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$projects = Projects::find($id);
+		$projects = Project::find($id);
 
 		return View::make('projects.edit')
 			->with('projects', $projects);
@@ -111,7 +111,7 @@ class ProjectsController extends \BaseController {
 				->withInput(Input::except('password'));
 		} else {
 			
-			$projects= Projects::find($id);
+			$projects= Project::find($id);
 			$projects->project_code      = Input::get('project_code');
 			$projects->description     = Input::get('description');
 			$projects->hold_id = Input::get('hold_id');
@@ -132,7 +132,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$projects = Projects::find($id);
+		$projects = Project::find($id);
 		$projects->delete();
 
 		// redirect
@@ -141,15 +141,25 @@ class ProjectsController extends \BaseController {
 	}
 	public function search()
 	{
-
-		if ($_POST['project_code']!=null || $_POST['description']!=null || $_POST['hold_id']!=null) {
-			$projects = Projects::whereRaw("project_code like '%".$_POST['project_code']."%'")->get();
+		$busqueda="";
+		if (Input::get('project_code')){
+    		$busqueda = $busqueda . "project_code like '%".Input::get('project_code')."%' AND ";
+		}
+		if (Input::get('description')){
+    		$busqueda = $busqueda . "description like '%".Input::get('description')."%' AND ";
+		}
+		if (Input::get('hold_id')){
+    		$busqueda = $busqueda . "hold_id like '%".Input::get('hold_id')."%' AND ";
+		}
+		$busqueda = substr($busqueda, 0, -4);
+		if ($busqueda) {
+			$projects = Project::whereRaw("".$busqueda."")->get();
 			return View::make('projects.index')
 			->with('projects', $projects);
 		}
 		else{
 
-			$projects = Projects::all();
+			$projects = Project::all();
 			return View::make('projects.index')
 			->with('projects', $projects);
 		}
